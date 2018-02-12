@@ -10,6 +10,9 @@ import ForgotPassword from './Registration/ForgotPassword';
 import NewPassword from './Registration/NewPassword';
 import Header from './Home/Header';
 import Homepage from './Home/Homepage';
+import GoogleMaps from './Home/GoogleMaps';
+import Shared from './Shared/Shared';
+
 //only need to include the App.css here, no where else
 import './App.css';
 
@@ -18,11 +21,16 @@ import './App.css';
 class App extends Component {
   render() {
     return (
+    
       <Router>
         <div className="App">
+        
           <Route path="/" exact component={ Login } />
           <Route path="/Register" exact component={ Register } />
           <Route path="/forgotpassword" exact component={ ForgotPassword } />
+          <Route path="/home" exact component={ Homepage } />
+          <Route path="/shared" exact component={ Shared } />
+
         </div>
       </Router>
     );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 
+
 //This imports are needed so that bootstrap components can be able to be used
 import {
     Collapse,
@@ -38,16 +39,16 @@ class Header extends Component {
   render() {
     return (
       <div className="Header"> 
-           <Navbar color="faded" light expand="md">
+           <Navbar  light expand="md" text-light color="info " >
            <NavbarBrand href="/">Pinned</NavbarBrand>
            <NavbarToggler onClick={this.toggle} />
            <Collapse isOpen={this.state.isOpen} navbar>
              <Nav className="ml-auto" navbar>
                <NavItem>
-                 <NavLink href="/">Home</NavLink>
+                 <NavLink href="/home">Home</NavLink>
                </NavItem>
                <NavItem>
-                 <NavLink href="/">Shared With Me</NavLink>
+                 <NavLink href="/shared">Shared With Me</NavLink>
                </NavItem>
                <NavItem>
                  <NavLink href="/">New Trip</NavLink>
@@ -72,7 +73,7 @@ class Header extends Component {
              </Nav>
            </Collapse>
          </Navbar>
-     
+       
       </div>
     );
   }
