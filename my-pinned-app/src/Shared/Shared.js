@@ -5,11 +5,14 @@ import { Container, Row, Col } from 'reactstrap';
 import Header from '../Home/Header';
 import GoogleMaps from '../Home/GoogleMaps';
 
+//This is just an external css that styles the navigation to a sidebar
+import '../Home/Header.css';
+
 class Shared extends Component {
     render() {
         
         return (
-            <div className="Shared">
+            <div className="Shared main">
                 <Header />
                
                 <div style={{width:'100%', height: '100%', marginBottom: '80px'}}> 

@@ -12,6 +12,19 @@ import Header from './Home/Header';
 import Homepage from './Home/Homepage';
 import GoogleMaps from './Home/GoogleMaps';
 import Shared from './Shared/Shared';
+import NewTrip from './NewTrip/NewTrip';
+
+//From the logout page
+import logout from './Logout/logout';
+
+//From the Settings page
+import AccountSettings from './Settings/AccountSettings';
+import PrivacySettings from './Settings/PrivacySettings';
+
+
+//This is for the Profile page
+import Account from './Profile/Account';
+import TwitterAccount from './Profile/TwitterAccount';
 
 //only need to include the App.css here, no where else
 import './App.css';
@@ -30,7 +43,12 @@ class App extends Component {
           <Route path="/forgotpassword" exact component={ ForgotPassword } />
           <Route path="/home" exact component={ Homepage } />
           <Route path="/shared" exact component={ Shared } />
-
+          <Route path="/newtrip" exact component={ NewTrip } />
+          <Route path="/logout" exact component={ logout } />
+          <Route path="/account" exact component={ AccountSettings } />
+          <Route path="/myaccount" exact component={ Account } />
+          <Route path="/twitaccount" exact component={ TwitterAccount } />
+          <Route path="/privacysettings" exact component={ PrivacySettings } />
         </div>
       </Router>
     );

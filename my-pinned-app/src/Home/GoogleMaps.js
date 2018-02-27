@@ -11,7 +11,7 @@ class GoogleMaps extends Component {
     render() {
         return (
             <div className="GoogleMaps">
-                <Map google={this.props.google} style={{width:'100%', float: 'right', height: '90%', position: 'relative'}}
+                <Map google={this.props.google} style={{width:'73%', height: '90%'}}
                   className={'map'}  zoom={14}>
 
                 <Marker
