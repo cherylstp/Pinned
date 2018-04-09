@@ -1,24 +1,29 @@
 {
   "name": "my-pinned-app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "bootstrap": "^4.0.0",
-    "google-map-react": "^0.29.0",
-    "google-maps-react": "^1.1.2",
-    "object-assign": "^4.1.1",
-    "react": "^16.2.0",
-    "react-bootstrap": "^0.32.1",
-    "react-dom": "^16.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.0",
-    "react-vendor-prefix": "0.0.1",
-    "reactstrap": "^5.0.0-beta"
-  },
+  "version": "1.0.0",
+  "description": "Back-end for Pinned",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix react-frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cherylstp/Pinned.git"
+  },
+  "author": "Cheryl St. Pierre",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cherylstp/Pinned/issues"
+  },
+  "homepage": "https://github.com/cherylstp/Pinned#readme",
+  "dependencies": {
+    "concurrently": "^3.5.1",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
   }
 }
