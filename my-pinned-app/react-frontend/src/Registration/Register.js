@@ -4,6 +4,48 @@ import { Link } from 'react-router-dom';
 
 //This Register.js deals with the register form for the application
 class Register extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+     name: "",
+     email: "",
+     username: "",
+     password: "" 
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
+  }
+
+  handleChange(event){
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  handleSubmit(event){
+    event.preventDefault();
+    fetch('/Register', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        "name": this.state.name,
+        "email": this.state.email,
+        "username": this.state.username,
+        "password": this.state.password
+      })
+    })
+    .then(res => res.json())
+    .then((data) => console.log(data))
+    .catch(err => console.log(err));
+  }
   
   render() {
     return (
@@ -15,22 +57,34 @@ class Register extends Component{
             <Form>
             <FormGroup>
                 <Label for="registerName">Name</Label>
-                <Input type="name" name="name" id="registerName" placeholder="Jack Black" />
+                <Input type="name" name="name" id="registerName" 
+                   value={this.state.name}
+                   onChange={this.handleChange} 
+                   placeholder="Jack Black" />
                 </FormGroup>
                 <FormGroup>
                 <Label for="registerEmail">Email</Label>
-                <Input type="email" name="email" id="loginEmail" placeholder="abcd@xxxx.com" />
+                <Input type="email" name="email" id="loginEmail"
+                  value={this.state.email}
+                  onChange={this.handleChange} 
+                  placeholder="abcd@xxxx.com" />
                 </FormGroup>
                 <FormGroup>
                 <Label for="registerUsername">Username</Label>
-                <Input type="username" name="username" id="registerUsername" placeholder="jackblack12" />
+                <Input type="username" name="username" id="registerUsername"
+                  value={this.state.username}
+                  onChange={this.handleChange} 
+                  placeholder="jackblack12" />
                 </FormGroup>
                 <FormGroup>
                 <Label for="registerPassword">Password</Label>
-                <Input type="password" name="password" id="registerPassword" placeholder="password" />
+                <Input type="password" name="password" id="registerPassword"
+                  value={this.state.password}
+                  onChange={this.handleChange} 
+                  placeholder="password" />
               
                 </FormGroup>
-                <Button color="success">Sign Up</Button>
+                <Button color="success" onClick={(event) => this.handleSubmit(event)}>Sign Up</Button>
                 <Button color="warning" style={{ float: 'right' }}>Cancel</Button>
                 <p>Already have an account with us?<Link to="/" style={{marginLeft: 5 }}>Sign In</Link></p>
             </Form>
