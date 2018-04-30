@@ -1,18 +1,18 @@
 
 var mongoClient = require('mongodb').MongoClient;
 var bcrypt = require('bcrypt');
-var mongoUsername = process.env.MONGO_USERNAME;
-var mongoPassword = process.env.MONGO_PASSWORD;
+var mongoURI = process.env.MONGO_URI;
+var mongoDB = process.env.MONGO_DB;
+var mongoUserCollection = process.env.MONGO_USER_COLLECTION;
 
 // Register: Add a new user to the database
 exports.registerUser = function(name, email, username, password){
-    var uri = "mongodb+srv://" + mongoUsername + ":" + mongoPassword + "@pinned-dvbij.mongodb.net/PinnedData";
-    mongoClient.connect(uri, function(err, db){
+    mongoClient.connect(mongoURI, function(err, db){
         if(err){
             throw err;
         }
 
-        var userCollection = db.db('PinnedData').collection('users');
+        var userCollection = db.db(mongoDB).collection(mongoUserCollection);
         var newUserDocument = {
             "name" : name,
             "email" : email,
@@ -35,15 +35,14 @@ exports.registerUser = function(name, email, username, password){
 
 // User login. When user is logged in, redirect to home page
 function userLogin(email, password){
-    var uri = "mongodb+srv://" + mongoUsername + ":" + mongoPassword + "@pinned-dvbij.mongodb.net/PinnedData";
     var isLoggedIn = false;
 
         function connect() {
-        mongoClient.connect(uri, function(err, db){
+        mongoClient.connect(mongoURI, function(err, db){
         if(err){
             throw err;
         }
-        var userCollection = db.db('PinnedData').collection('users');
+        var userCollection = db.db(mongoDB).collection(mongoUserCollection);
         userCollection.find({ email: email }).limit(1).next(function(err, result){
             if(err){
                 throw err;
