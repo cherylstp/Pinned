@@ -9,7 +9,6 @@ import '../Home/Header.css';
 
 class AccountSettings extends Component {
     render() {
-        
         return (
             <div className="AccountSettings main">
                 <Header />
