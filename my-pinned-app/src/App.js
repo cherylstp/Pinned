@@ -32,13 +32,13 @@ import './App.css';
 
 //This App.js is the gateway to our main app components, use it as a placeholder for all of the other components
 class App extends Component {
+ 
   render() {
     return (
     
       <Router>
         <div className="App">
-        
-          <Route path="/" exact component={ Login } />
+         <Route path="/" exact component={ Login } />
           <Route path="/Register" exact component={ Register } />
           <Route path="/forgotpassword" exact component={ ForgotPassword } />
           <Route path="/home" exact component={ Homepage } />
