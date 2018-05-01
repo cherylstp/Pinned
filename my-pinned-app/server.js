@@ -31,7 +31,7 @@ app.post('/Register', jsonParser, (req, res) => {
 });
 
 // Handles a user logging into application
-app.post('/Login', jsonParser, (req, res) => {
+app.post('/', jsonParser, (req, res) => {
     const user = {
         "email": req.body.email,
         "password": req.body.password
