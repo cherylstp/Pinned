@@ -12,7 +12,7 @@ class Header extends Component {
           <div className="sidenav">
           <p className="logo"> Pinned </p>
           <a href="/home">Home</a>
-          <a href="/shared">Shared With Me</a>
+      
           <a href="/newtrip">New Trip</a>
           <a href="/myaccount">Profile</a>
           <a href="/account">Settings</a>

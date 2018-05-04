@@ -57,16 +57,28 @@ class GoogleMaps extends Component {
                   {this.state.tweet.map(tweet => {
                     return (
                         <Marker onClick={this.onMarkerClick}
-                        const text={tweet.tweet
-                            .split('. ')
-                            .map((part, index) => index % 2 === 0 ? part : <a href={part} target="_blank">{part}</a>)
+                        name={'Here is where you have been:'}
+                        username = {tweet.username}
+                        subtitle= {tweet.tweet_id}
+                        date= {tweet.date_time}
+                        
+                        
+                        const text={tweet.text
+                            .split('https://t.co/')
+                            .map((part, index) => index % 2 === 0 ? part : <a target="_blank"></a>)
                         }
-                         position={{ lat: tweet.coordinates.latitude,
-                          lng: tweet.coordinates.longitude }}
-                          title={'tweets'}
-                          name={'Here is where you have been:'}
+                        img = {tweet.entities.media.map( d => {
+                          return (
+                            <div>
+                            <a href={d.expanded_url}/>
+                            <img src={d.media_url} height="400" width="60%" float="right"/>
+                           </div>
+                         )})}
 
-
+                       position={{lat: tweet.coordinates.coordinates[1], lng:  tweet.coordinates.coordinates[0]}}
+                         
+                         
+        
                           />
                     );
                     })}
@@ -79,22 +91,17 @@ class GoogleMaps extends Component {
                     <h1>{this.state.selectedPlace.name}</h1>
                     <Card>
                         <CardBody>
-                            <h1>
+                            
                            
+                  
+                            <CardTitle> username: {this.state.selectedPlace.username}</CardTitle>
+                            <CardText> Date: {this.state.selectedPlace.date}</CardText>
+                            <CardText>{this.state.selectedPlace.text }</CardText>
+                            <CardSubtitle> {this.state.selectedPlace.img}</CardSubtitle>
                             
-                        
-                            </h1>
-                            <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I will never forget my first HTTP request measured in µs :-) <a href="https://twitter.com/hashtag/elixir?src=hash&amp;ref_src=twsrc%5Etfw">#elixir</a> <a href="https://twitter.com/hashtag/phoenix?src=hash&amp;ref_src=twsrc%5Etfw">#phoenix</a></p>&mdash; Tiago Guedes (@tiagopog) <a href="https://twitter.com/tiagopog/status/807811447862468608?ref_src=twsrc%5Etfw">December 11, 2016</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                            <CardImg top width="100%" src="https://twitter.com/DT_Les/status/570264145116819457/photo/1" alt="Card image cap" />
-                            <CardTitle>{this.state.selectedPlace.title}</CardTitle>
-                            <CardSubtitle>{this.state.selectedPlace.subtitle}</CardSubtitle>
-                            <CardText>{this.state.selectedPlace.text
-  
-                            
-                            }</CardText>
-                            <Button color="success">See more</Button>
                     </CardBody>
                     </Card>
+                   
                     </div>
                 </InfoWindow>
                 </Map>

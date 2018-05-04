@@ -2,12 +2,19 @@ import React, { Component } from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import {  Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import classnames from 'classnames';
+import {  CardImg, CardBody,
+ CardSubtitle, Media } from 'reactstrap';
+
 
 //import that allows us to have a navigation bar
 import Header from '../Home/Header';
 
 //imported so that we can use the google maps
 import GoogleMaps from '../Home/GoogleMaps';
+
+
+//imported so that we can use the calendar
+import Calendar from './Calendar';
 
 //This is just an external css that styles the navigation to a sidebar
 import '../Home/Header.css';
@@ -17,6 +24,11 @@ class NewTrip extends Component {
     
   constructor(props) {
     super(props);
+        this.state = {
+          tweet : []
+        }
+        
+      
     
     this.toggle = this.toggle.bind(this);
     this.state = {
@@ -35,13 +47,23 @@ class NewTrip extends Component {
 
     }
   }
+
+  
+  componentDidMount() {
+    fetch('/tweet')
+    
+      .then(res => res.json())
+      .then( tweet  => this.setState({ tweet }));
+  }
+
   render() {
     return (
       <div className="NewTrip main">
+       
        <Header />
         <Nav tabs color="success">
           <NavItem>
-            <NavLink
+          <NavLink
               className={classnames({ active: this.state.activeTab === '1' })}
             >
               Mark Location
@@ -51,8 +73,10 @@ class NewTrip extends Component {
             <NavLink
               className={classnames({ active: this.state.activeTab === '2' })}
             >
-              Import Tweets
-            </NavLink>
+            Import Tweets
+              </NavLink>
+      
+            
           </NavItem>
           <NavItem>
             <NavLink
@@ -83,7 +107,9 @@ class NewTrip extends Component {
                   <GoogleMaps />
                   </div>
             <Card body style={{width:'100px', }}>
-                  <CardTitle>My Current Trip</CardTitle>
+                  <CardTitle>Create New Trip</CardTitle>
+                  <Label for="tripName">What would you like to name this trip?</Label>
+                  <Input style={{ marginBottom:'10px'}} type="tripName" name="tripName" id="tripName" placeholder="ex: Road Trip 2018" />  
                   <Button onClick={() => { this.toggle('2'); }}>Next</Button>
                   <Button style={{ marginTop:'10px'}}>Cancel</Button>
                 </Card>
@@ -93,29 +119,14 @@ class NewTrip extends Component {
           </TabPane>
           <TabPane tabId="2">
             <Row>
-              
-                <Card body>
-                  <CardTitle>Get Tweets</CardTitle>
-                  <Form>
-                  <FormGroup tag="fieldset">
-                  <FormGroup check>
-                        <Label check>
-                        <Input type="radio" name="radio1" />
-                        Tweet 1
-                        </Label>
-                  </FormGroup>
-          
-                  </FormGroup>
-                  <FormGroup check>
-                    <Label check>
-                      <Input type="radio" name="radio1" />{' '}
-                      Tweet 2
-                    </Label>
-                  </FormGroup>
-                </Form>
-                <Button style={{ marginTop:'20px'}}  color="success" onClick={() => { this.toggle('3'); }}>Add Pictures</Button>      
-                <Button style={{ marginTop:'20px'}}  color="warning" onClick={() => { this.toggle('1'); }}>Go Back</Button>
-              </Card>
+            <Card body>
+                  <CardTitle>Select the dates you had this trip: </CardTitle>
+                  <CardText>
+                      
+                  </CardText>
+                  <Button style={{ marginTop:'20px'}} color="success" onClick={() => { this.toggle('3'); }}>Add Descriptions</Button>
+                  <Button style={{ marginTop:'20px'}}  color="warning" onClick={() => { this.toggle('1'); }}>Go Back</Button>
+            </Card>
             </Row>
           </TabPane>
           <TabPane tabId="3">
