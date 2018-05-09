@@ -6,12 +6,16 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var bodyParser = require("body-parser");
+const db = require('./config/database');
+const express_session = require('express-session');
+const jsonParser = bodyParser.json();
+var sess;
 require('dotenv').config();
 
 //controllers 
 var locationController = require("./controllers/controller.js");
 var tweetController = require("./controllers/TweetController.js");
-
+var MapController= require("./controllers/MapController.js");
 
 //db instance connection
 require("./config/db");
@@ -25,7 +29,6 @@ app.use(bodyParser.json());
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 })
-
 
 // API ENDPOINTS
 
@@ -51,6 +54,45 @@ app
   .put(tweetController.updateTweet)
   .delete(tweetController.deleteTweet);
 
+  
+  app
+  .route("/map")
+  .get(MapController.listAllMap)
+  .post(MapController.createNewMap);
+
+// Handles the post request to register a new user
+app.post('/Register', jsonParser, (req, res) => {
+  const user = {
+      "name": req.body.name,
+      "email": req.body.email,
+      "username": req.body.username,
+      "password": req.body.password
+  }
+  db.registerUser(user.name, user.email, user.username, user.password);
+  res.send(user);
+});
+
+// Handles a user logging into application
+app.post('/Login', jsonParser, (req, res) => {
+  const user = {
+      "email": req.body.email,
+      "password": req.body.password
+  }
+  var isLoggedIn = db.userLogin(user.email, user.password);
+  console.log("isLoggedin: " + isLoggedIn);
+  if(isLoggedIn){
+      // Assign session var to email upon success
+      sess = req.session;
+     // console.log(sess);
+      sess.email = req.body.email;
+      console.log("session email: " + sess.email);
+  }
+  else{
+      // Do not log in
+  }
+ // res.redirect('/Home');
+  res.send(user);
+});
 
 
 // view engine setup
@@ -65,6 +107,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

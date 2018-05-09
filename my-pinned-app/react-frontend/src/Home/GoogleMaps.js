@@ -7,7 +7,7 @@ import {GoogleApiWrapper} from 'google-maps-react'
 import {Map, InfoWindow, Marker } from 'google-maps-react';
 
 import ReactDOM from 'react-dom';
-require('dotenv').config();
+  require('dotenv').config();
 
 class GoogleMaps extends Component {   
     constructor(props) {

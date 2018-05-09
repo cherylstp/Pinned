@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/cherylstp/Pinned#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "bcrypt": "^2.0.1",
     "body-parser": "^1.18.2",
     "concurrently": "^3.5.1",
@@ -30,9 +31,14 @@
     "mongodb": "^3.0.6",
     "nodemon": "^1.17.3",
     "npm": "^5.8.0",
+    "react-addons-shallow-compare": "^15.6.2",
     "react-calendar": "^2.14.0",
     "react-date-range": "^1.0.0-alpha5",
-    "react-helmet": "^5.2.0"
+    "react-datepicker": "^1.4.1",
+    "react-dates-presets": "^1.1.0",
+    "react-dates-range-picker": "^0.1.0",
+    "react-helmet": "^5.2.0",
+    "superagent": "^3.8.3"
   },
   "devDependencies": {}
 }

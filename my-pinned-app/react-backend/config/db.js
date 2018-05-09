@@ -18,3 +18,4 @@ mongoose.connect(dbURL, options).then(
 
 require("../models/Location");
 require("../models/TweetData");
+require("../models/UniqueMap");
