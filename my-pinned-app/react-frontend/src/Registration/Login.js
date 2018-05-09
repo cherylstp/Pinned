@@ -36,10 +36,11 @@ class Login extends Component {
         "password": this.state.password
       })
     })
-    .then(res => res.json())
-    .then((data) => {
+    .then(res => console.log(res))//res.json())
+    /*.then((data) => {
       //window.location = "/Home";
-    })
+    }) */
+    .catch(onrejected => console.log(onrejected))
   }
 
   render() {

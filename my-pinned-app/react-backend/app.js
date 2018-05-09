@@ -73,6 +73,7 @@ app.post('/Login', jsonParser, (req, res) => {
       "email": req.body.email,
       "password": req.body.password
   }
+  console.log("User %j", user);
   var isLoggedIn = db.userLogin(user.email, user.password);
   console.log("isLoggedin: " + isLoggedIn);
   if(isLoggedIn){
@@ -86,6 +87,7 @@ app.post('/Login', jsonParser, (req, res) => {
       // Do not log in
   }
  // res.redirect('/Home');
+
   res.send(user);
 });
 
