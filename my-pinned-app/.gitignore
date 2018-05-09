@@ -2,6 +2,15 @@
 
 # dependencies
 /node_modules
+  my-pinned-app/PinnedUserTweetsMongoDB.py
+        my-pinned-app/react-frontend/node_modules/.cache/babel-loader/0cdeb3916731404a32559aa13451cab0375d3af3.json.gz
+        my-pinned-app/react-frontend/node_modules/.cache/babel-loader/737236cba479d8ef77bbcd52974a65ca600445c0.json.gz
+        my-pinned-app/react-frontend/node_modules/.cache/babel-loader/74efa54737ca83baa8042c8851d42102e6a60262.json.gz
+        my-pinned-app/react-frontend/node_modules/.cache/babel-loader/7e27ee22f471b2d4dd90c63ec62502980f4e5944.json.gz
+        my-pinned-app/react-frontend/node_modules/.cache/babel-loader/8486b72c3f1acc44454ca74727db48043bfd15c1.json.gz
+        my-pinned-app/react-frontend/node_modules/.cache/babel-loader/95418df795ea600a7a8d70d1d3bd64039cf6a001.json.gz
+        my-pinned-app/react-frontend/node_modules/.cache/babel-loader/d18781bdc4d276fabfe11f527c16546679fe4b9d.json.gz
+        my-pinned-app/react-frontend/node_modules/.cache/babel-loader/d636d8eaa9a18bdd66eb2827394e22d98298f714.json.gz
 
 # testing
 /coverage
