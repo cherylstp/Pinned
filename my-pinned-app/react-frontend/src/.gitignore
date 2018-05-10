@@ -2,7 +2,12 @@
 
 # dependencies
 /node_modules
- 
+
+
+my-pinned-app/react-frontend/node_modules/fsevents/build/Release/.deps/Users/Cheryl/Desktop/CSC198/Application/Pinned/my-pinned-app/react-frontend/node_modules/fsevents/lib/binding/Release/node-v59-darwin-x64
+
+
+
 /coverage
 
 # production
