@@ -55,24 +55,7 @@ app
   .put(tweetController.updateTweet)
   .delete(tweetController.deleteTweet);
 
-  
-  app
-  .route("/maping")
-  .get(MapController.listAllMap)
-  .post(MapController.createNewMap);
-
-
-
-  app.post('/map', jsonParser, (req, res) => {
-    const map = {
-      "tripName": req.body.tripName,
-        "description": req.body.description,
-        
-    }
-    db.registerUser(map.tripName, map.description);
-    res.send(map);
-  });
-// Handles the post request to register a new user
+ 
 app.post('/Register', jsonParser, (req, res) => {
   const user = {
       "name": req.body.name,

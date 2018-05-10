@@ -1,4 +1,4 @@
-
+require('dotenv').config();
 var mongoClient = require('mongodb').MongoClient;
 var bcrypt = require('bcrypt');
 var mongoURI = process.env.MONGO_URI;
@@ -36,7 +36,6 @@ exports.registerUser = function(name, email, username, password){
 // User login. When user is logged in, redirect to home page
 function userLogin(email, password){
     var isLoggedIn = false;
-
         function connect() {
         mongoClient.connect(mongoURI, function(err, db){
         if(err){
