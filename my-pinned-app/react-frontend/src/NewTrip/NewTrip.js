@@ -102,24 +102,24 @@ class NewTrip extends Component {
 
 
 
-    handleSubmit = (event) => {
+    handleSubmit(event){
       event.preventDefault();
-
-      var self = this;
-      fetch('/map', { 
+      fetch('/map', {
         method: 'POST',
-        data: {
-          tripName : self.refs.tripName,
-          tweet: self.refs.tweet,
-          description: self.refs. description
-        }
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          "tripName": this.state.tripName,
+          "description": this.state.description
+        })
       })
-      .then(function(response) {
-        return response.json()
-      }).then(function(body) {
-        console.log(body);
-      });
+      .then(res => res.json())
+      .then((data) => {
+        window.location = "/home";
+      })
     }
+    
   
   render() {
     return (
@@ -263,7 +263,7 @@ class NewTrip extends Component {
                Description: {this.state.description}
               </ CardSubtitle>
            
-              <Button style={{ marginTop:'20px'}} color="success" >Submit</Button>
+              <Button style={{ marginTop:'20px'}} color="success" onClick={(event) => this.handleSubmit(event)}>Submit</Button>
 
               <Button style={{ marginTop:'20px'}} color="warning" onClick={() => { this.toggle('3'); }}>Go Back</Button>
            </Card>

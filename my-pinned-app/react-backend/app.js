@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var unique = require('./routes/unique');
 var bodyParser = require("body-parser");
 const db = require('./config/database');
 const express_session = require('express-session');
@@ -56,10 +57,21 @@ app
 
   
   app
-  .route("/map")
+  .route("/maping")
   .get(MapController.listAllMap)
   .post(MapController.createNewMap);
 
+
+
+  app.post('/map', jsonParser, (req, res) => {
+    const map = {
+      "tripName": req.body.tripName,
+        "description": req.body.description,
+        
+    }
+    db.registerUser(map.tripName, map.description);
+    res.send(map);
+  });
 // Handles the post request to register a new user
 app.post('/Register', jsonParser, (req, res) => {
   const user = {
@@ -107,7 +119,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
+app.use('/map', unique);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
